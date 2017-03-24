@@ -2,6 +2,7 @@ image: harmpauw/maven-letsencrypt
 
 stages:
   - test
-
-script:
-  - mvn verify
+  
+test:  
+  script:
+    - mvn verify
