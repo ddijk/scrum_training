@@ -5,10 +5,4 @@ stages:
   
 test:  
   script:
-    - mvn site -DgenerateReports=false
-    - mvn surefire-report:report
-  artifacts:
-    when: always
-    name: Unit test report
-    paths:
-    - target/site/
+    - mvn test
