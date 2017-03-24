@@ -5,8 +5,8 @@ stages:
   
 test:  
   script:
-    - mvn surefire-report:report
     - mvn site -DgenerateReports=false
+    - mvn surefire-report:report
   artifacts:
     when: always
     name: Unit test report
