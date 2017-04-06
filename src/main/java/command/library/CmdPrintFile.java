@@ -19,6 +19,8 @@ public class CmdPrintFile extends Command {
             File file = (File) fsi;
             String content = file.getFileContent();
             outputter.print(content);
+        }else{
+            outputter.printLine(String.format("Unknown file: %s", path));
         }
     }
 
