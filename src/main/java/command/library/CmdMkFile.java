@@ -19,8 +19,16 @@ class CmdMkFile extends Command {
 
 	@Override
 	public void execute(IOutputter outputter) {
+		int numOfParams = this.getParameterCount();
+		if ( numOfParams == 0 ) {
+		    outputter.printLine("syntax of the command is incorrect");
+			return;
+		}
+		String fileContent = "";
+		if ( numOfParams == 2 ) {
+			fileContent = this.getParameterAt(1);
+		}
 		String fileName = this.getParameterAt(0);
-		String fileContent = this.getParameterAt(1);
 		File newFile = new File(fileName, fileContent);
 		this.getDrive().getCurrentDirectory().add(newFile);
 	}
