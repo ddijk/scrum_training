@@ -6,10 +6,10 @@
 
 package command.library;
 
-import interfaces.IDrive;
-
 import java.util.ArrayList;
+
 import command.framework.Command;
+import interfaces.IDrive;
 
 /**The factory is responsible to create an object of every command supported
  * and to add it to the list of known commands.
@@ -29,6 +29,7 @@ public class CommandFactory {
 		this.commands.add(new CmdMkDir("md", drive));
 		this.commands.add(new CmdMkFile("mf", drive));
 		this.commands.add(new CmdMkFile("mkfile", drive));
+		this.commands.add(new CmdVer("ver", drive));
 
 		// Add your commands here
 		
