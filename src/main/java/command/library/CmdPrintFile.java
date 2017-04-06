@@ -21,4 +21,9 @@ public class CmdPrintFile extends Command {
             outputter.print(content);
         }
     }
+
+    @Override
+    protected boolean checkNumberOfParameters(int numberOfParametersEntered) {
+        return numberOfParametersEntered == 1;
+    }
 }
