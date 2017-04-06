@@ -2,7 +2,7 @@
  * DOSBox, Scrum.org, Professional Scrum Developer Training
  * Authors: Rainer Grau, Daniel Tobler, Zuehlke Technology Group
  * Copyright (c) 2013 All Right Reserved
- */ 
+ */
 
 package console;
 
@@ -30,10 +30,10 @@ public class Console {
 	 */
 	public void processInput() {
 		String line = new String();
-        this.outputter.printLine("DOSBox, Scrum.org, Professional Scrum Developer Training");
-        this.outputter.printLine("Copyright (c) Rainer Grau and Daniel Tobler. All rights reserved.");
+		this.outputter.printLine("DOSBox, Scrum.org, Professional Scrum Developer Training");
+		this.outputter.printLine("Copyright (c) Rainer Grau and Daniel Tobler. All rights reserved.");
 
-		while (true) {
+		while(line.trim().compareToIgnoreCase("exit") != 0) {
 			int readChar = 0;
 			StringBuilder input = new StringBuilder();
 
@@ -48,9 +48,11 @@ public class Console {
 			} catch (IOException e) {
 				// do nothing by intention
 			}
-			
+
 			this.outputter.resetStatistics();
 			invoker.executeCommand(line, this.outputter);
 		}
+		this.outputter.printLine("\nGoodbye!");
+		this.drive.save();
 	}
 }
