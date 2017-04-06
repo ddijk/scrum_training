@@ -78,4 +78,23 @@ public class CmdMkFileTest extends CmdTest {
         assertEquals(numbersOfFilesBeforeTest, drive.getCurrentDirectory().getNumberOfContainedFiles());
         TestHelper.assertContains("syntax of the command is incorrect", testOutput.toString());
     }
+
+    @Test
+    public void createDuplicatFileShouldFail() {
+        // given
+        final String newFileName = "testFile";
+
+        // when
+        executeCommand("mkfile " + newFileName);
+
+        // then
+        File createdFile = TestHelper.getFile(drive, drive.getCurrentDirectory().getPath(), newFileName);
+        assertEquals("", createdFile.getFileContent());
+
+        // when I create it again, it should fail
+        executeCommand("mkfile " + newFileName);
+        TestHelper.assertContains("mkFile: "+ newFileName+" exists", testOutput.toString());;
+
+    }
+
 }

@@ -24,11 +24,17 @@ class CmdMkFile extends Command {
 		    outputter.printLine("syntax of the command is incorrect");
 			return;
 		}
+
+		String fileName = this.getParameterAt(0);
+		if ( this.getDrive().getItemFromPath(fileName) != null) {
+			outputter.printLine("mkFile: "+ fileName+" exists");
+			return;
+
+		}
 		String fileContent = "";
 		if ( numOfParams == 2 ) {
 			fileContent = this.getParameterAt(1);
 		}
-		String fileName = this.getParameterAt(0);
 		File newFile = new File(fileName, fileContent);
 		this.getDrive().getCurrentDirectory().add(newFile);
 	}
