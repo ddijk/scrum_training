@@ -23,7 +23,9 @@ public class CmdVer extends Command {
             outputter.printLine("Dick");
         }
 
-        if (numOfParams == 1 && !this.getParameterAt(0).equals("/w")) {}
-        outputter.printLine("Invalid option : "+this.getParameterAt(0) );
+        if (numOfParams == 1 && !this.getParameterAt(0).equals("/w")) {
+            outputter.printLine("Invalid option : " + this.getParameterAt(0));
+
+        }
     }
 }
