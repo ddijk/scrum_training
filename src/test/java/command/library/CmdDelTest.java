@@ -18,13 +18,14 @@ public class CmdDelTest extends CmdTest {
         // Add all commands which are necessary to execute this unit test
         // Important: Other commands are not available unless added here.
         this.commandInvoker.addCommand(new CmdMkFile("mkfile", this.drive));
-        this.commandInvoker.addCommand(new CmdMkFile("del", this.drive));
+        this.commandInvoker.addCommand(new CmdDelete("del", this.drive));
     }
 
     @Test
     public void verifyDeleteFile() {
-        String newFileName = "file1";
+        String newFileName = "file1xxx";
         // when
+        assertEquals(numbersOfFilesBeforeTest , drive.getCurrentDirectory().getNumberOfContainedFiles());
         executeCommand("mkfile " + newFileName);
         assertEquals(numbersOfFilesBeforeTest + 1, drive.getCurrentDirectory().getNumberOfContainedFiles());
         executeCommand("del " + newFileName);
@@ -41,7 +42,7 @@ public class CmdDelTest extends CmdTest {
 
         assertEquals(numbersOfFilesBeforeTest , drive.getCurrentDirectory().getNumberOfContainedFiles());
 
-        TestHelper.assertContains("del: "+ newFileName+" exists", testOutput.toString());;
+        TestHelper.assertContains("Unknown file: "+ newFileName, testOutput.toString());;
     }
 
 }
