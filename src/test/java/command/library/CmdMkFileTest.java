@@ -93,7 +93,7 @@ public class CmdMkFileTest extends CmdTest {
 
         // when I create it again, it should fail
         executeCommand("mkfile " + newFileName);
-        TestHelper.assertContains("mkFile: "+ newFileName+" exists", testOutput.toString());;
+        TestHelper.assertContains("mkfile: "+ newFileName+" exists", testOutput.toString());;
 
     }
 

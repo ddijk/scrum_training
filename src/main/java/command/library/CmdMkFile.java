@@ -27,7 +27,7 @@ class CmdMkFile extends Command {
 
 		String fileName = this.getParameterAt(0);
 		if ( this.getDrive().getItemFromPath(fileName) != null) {
-			outputter.printLine("mkFile: "+ fileName+" exists");
+			outputter.printLine("mkfile: "+ fileName+" exists");
 			return;
 
 		}

@@ -8,13 +8,13 @@ package command.library;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
-import helpers.Path;
-import helpers.TestHelper;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import filesystem.Directory;
+import helpers.Path;
+import helpers.TestHelper;
 
 public class CmdMkDirTest extends CmdTest {
 
@@ -120,5 +120,27 @@ public class CmdMkDirTest extends CmdTest {
         executeCommand("mkdir");
         assertEquals(numbersOfDirectoriesBeforeTest + 1, drive.getRootDirectory().getNumberOfContainedDirectories());
         TestHelper.assertContains("The syntax of the command is incorrect", this.testOutput);
+    }
+
+    @Test
+    public void createDuplicatDirShouldFail() {
+        // given
+        final String newFileName = "testDir";
+
+        // when
+        executeCommand("mkdir " + newFileName);
+
+        // then
+        assertEquals(numbersOfDirectoriesBeforeTest + 1, drive.getRootDirectory().getNumberOfContainedDirectories());
+        TestHelper.assertOutputIsEmpty(testOutput);
+
+        // when I create it again, it should fail
+        executeCommand("mkdir " + newFileName);
+
+        // number of dirs should stay the same
+        assertEquals(numbersOfDirectoriesBeforeTest+1, drive.getRootDirectory().getNumberOfContainedDirectories());
+        TestHelper.assertContains("mkdir: " + newFileName + " exists", testOutput.toString());
+        ;
+
     }
 }

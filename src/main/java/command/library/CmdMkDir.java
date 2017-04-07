@@ -49,12 +49,19 @@ class CmdMkDir extends Command {
     public void execute(IOutputter outputter) {
         for(int i=0 ; i<getParameterCount() ; i++)
         {
-            CreateDirectory(getParameterAt(i), this.getDrive());
+           if (!CreateDirectory(getParameterAt(i), this.getDrive())) {
+                   outputter.printLine("mkdir: "+ getParameterAt(i)+" exists");
+           }
         }
     }
 
-    private static void CreateDirectory(String newDirectoryName, IDrive drive) {
+    private static boolean CreateDirectory(String newDirectoryName, IDrive drive) {
+
+        if ( drive.getItemFromPath(newDirectoryName) != null) {
+            return false;
+        }
         Directory newDirectory = new Directory(newDirectoryName);
         drive.getCurrentDirectory().add(newDirectory);
+        return true;
     }
 }
