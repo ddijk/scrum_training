@@ -33,6 +33,7 @@ public class CommandFactory {
         this.commands.add(new CmdVer("ver", drive));
         this.commands.add(new CmdPrintFile("type", drive));
         this.commands.add((new CmdExit("exit", drive)));
+        this.commands.add(new CmdDelete("delete", drive));
         // Add your commands here
 
     }

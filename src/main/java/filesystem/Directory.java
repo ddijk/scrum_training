@@ -103,4 +103,8 @@ public class Directory extends FileSystemItem {
 	public int getSize() {
 		return 0; // A directory has no size
 	}
+
+	public boolean delete(File file) {
+		return content.remove(file);
+	}
 }
