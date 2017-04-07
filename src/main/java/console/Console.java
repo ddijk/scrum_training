@@ -50,7 +50,9 @@ public class Console {
 			}
 
 			this.outputter.resetStatistics();
-			invoker.executeCommand(line, this.outputter);
+			if ( line.trim().length() != 0) {
+				invoker.executeCommand(line, this.outputter);
+			}
 		}
 		this.outputter.printLine("\nGoodbye!");
 		this.drive.save();
